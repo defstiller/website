@@ -4,15 +4,21 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import App from "./App";
 
+import App from "./App";
+import NavBar from "./components/mainComponents/navbar/NavBar";
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(
 	<React.StrictMode>
 		<Router>
 			<Routes>
-				<Route exact path="/" element={<App/>} />
+				<Route exact path="/" element={
+					<>
+						<App/> 
+						<NavBar />
+					</>
+				} />
 			</Routes>
 		</Router>
 	</React.StrictMode>
