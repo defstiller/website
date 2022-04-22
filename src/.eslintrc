@@ -5,12 +5,12 @@
     "eslint:recommended"
   ],
   "rules": {
-      "no-unused-vars": "error",
-      "prefer-const": "error",
-      "quotes": ["error", "double"],
-      "jsx-quotes": ["error", "prefer-double"],
+      "no-unused-vars": "warn",
+      "prefer-const": "warn",
+      "quotes": ["warn", "double"],
+      "jsx-quotes": ["warn", "prefer-double"],
       "indent": ["warn", "tab"],
-      "comma-dangle": ["error", "always-multiline"],
+      "comma-dangle": ["warn", "always-multiline"],
       "semi": ["warn", "always"]
 
   }
