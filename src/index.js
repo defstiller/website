@@ -1,25 +1,44 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
-import App from "./App";
 import NavBar from "./components/mainComponents/navbar/NavBar";
+import Authentication from "./pages/authentication/Authentication";
+import {AuthenticationContext, AuthenticationContextProvider} from "./logic/hookLogic/context";
+import Home from "./pages/Home"
+import Login from "./pages/authentication/Login"
+import Register from "./pages/authentication/Register"
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
+
+
+const user = getAuth()
+
 root.render(
 	<React.StrictMode>
 		<Router>
-			<Routes>
-				<Route exact path="/" element={
-					<>
-						<App/> 
-						<NavBar />
-					</>
-				} />
-			</Routes>
+			<AuthenticationContextProvider >
+				<Routes>
+				
+					<Route exact path="/" element={
+						<>
+							<NavBar />
+							<Home /> 
+						</>
+					
+					} />
+					<Route exact path="/login" element={
+						<Login />	
+					} />
+					<Route exact path="/register" element={
+						<Register />	
+					} />
+				</Routes>
+			</AuthenticationContextProvider>
 		</Router>
 	</React.StrictMode>
 );
