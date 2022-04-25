@@ -1,5 +1,5 @@
 import {db} from "../firebase/firebaseCloud";
-import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore"; 
 
 const handleSubmitProduct = async(event, isInput) => {
 	event.preventDefault();
