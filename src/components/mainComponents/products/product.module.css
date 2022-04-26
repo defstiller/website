@@ -1,0 +1,17 @@
+
+/* Products component CSS */
+.listDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.ul {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr); 
+	list-style-position: inside;
+  }
+
+  /* single Product CSS */
+.singleDiv {
+	margin: 50px;
+}
