@@ -1,37 +1,16 @@
-import {useState, useEffect, useCallback} from "react";
-
-import {db} from "../../../logic/firebase/firebaseCloud";
-import { collection, getDocs } from "firebase/firestore"; 
-
 import Product from "./Product";
+import getProducts from "./getProducts";
+import classes from "./product.module.css";
 
-function Products() {
-	const [isProducts, setIsProducts] = useState();
-
-	const getProducts = useCallback(async() =>{
-		try{
-			const resultArray = [];
-			const response = await getDocs(collection(db, "products"));
-			response.forEach(result => resultArray.push({
-				id: result.id,
-				data: result.data(),
-			}));
-			setIsProducts(resultArray);
-
-		} catch(err){
-			console.log(err);
-		}
-	}, []);
-
-	useEffect(() =>{
-		getProducts();
-	},[getProducts]);
-
+function Products({isProducts}) {
 	return (
-		<div>
-			{isProducts && isProducts.map(product => {
-				return <Product key={product.id} props={product.data} />;
-			})}
+		<div className={classes.listDiv}>
+			<ul className={classes.ul}>
+				{isProducts && isProducts.map(product => {
+					return <li key={product.id}> <Product props={product.data} getProducts={() => getProducts()}/> </li>;
+				})}
+
+			</ul>
 		</div>
 	);
 
