@@ -1,8 +1,10 @@
+import classes from "./product.module.css";
 function Product ({props}) {
-	return (<>
-		<p>{props.description}</p>
-		<p>{props.imgUrl}</p>	
-	</>
+	return (
+		<div className={classes.singleDiv}>
+			<p>Description : {props.description}</p>
+			<p>Image URL : {props.imgUrl}</p>	
+		</div>
 	);
 }
 
