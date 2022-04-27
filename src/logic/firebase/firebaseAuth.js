@@ -1,6 +1,5 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, onAuthStateChanged } from "firebase/auth";
 import {auth} from "./firebaseConfig";
-
 
 //create new user
 function createUser(email, password) {
@@ -22,10 +21,9 @@ function createUser(email, password) {
 //login existing user
 function loginUser(email, password) {
 	const auth = getAuth();
-	console.log(auth)
 	setPersistence(auth, browserSessionPersistence)
 		.then(() => {
-			return signInWithEmailAndPassword(auth, email, password)
+			signInWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
 				// Signed in 
 					const user = userCredential.user;
@@ -40,5 +38,17 @@ function loginUser(email, password) {
 				});
 		});
 }
+
+onAuthStateChanged(auth, (user) => {
+	if (user) {
+		// User is signed in, see docs for a list of available properties
+		// https://firebase.google.com/docs/reference/js/firebase.User
+		const uid = user.uid;
+		console.log(uid)
+	// ...
+	} else {
+	// User is signed out
+	}
+});
 
 export {createUser, loginUser};

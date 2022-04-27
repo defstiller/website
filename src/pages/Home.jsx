@@ -7,7 +7,7 @@ import SubmitNewProductForm from "../components/forms/SubmitNewProduct";
 import getProducts from "../components/mainComponents/products/getProducts";
 
 function Home() {
-	const [isProducts, setIsProducts] = useState()
+	const [isProducts, setIsProducts] = useState();
 	const [serverResponse, setServerResponse] = useState();
 	const [isInput, setIsInput] = useState({
 		name:"",

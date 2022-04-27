@@ -1,7 +1,10 @@
+import {useState} from "react";
 import {useNavigate, useLocation} from "react-router-dom";
 
 function Form(props) {
-	const {handleInputChange, handleSubmit, email, password} = props.props;
+	const {handleInputChange, handleSubmit, email, password} = props.data;
+	const {setIsLogin, isLogin} = props.page;
+	const [authPage, setAuthPage] = useState(props.page);
 	const navigate = useNavigate();
 	const location = useLocation();
 	let changePageButtonText = "";
@@ -11,32 +14,30 @@ function Form(props) {
 	page, the button text will be "Already registered?" and the submit button will be
 	"register". If the user is on the login page, the button text will be "Register" and the
 	submit button will be "login". */
-	if(location.pathname === "/register") {
-		changePageButtonText = "Already registered?";
-		signUpOrLogin = "register";
-	} else {
+	if(isLogin) {
 		changePageButtonText = "Create new account";
 		signUpOrLogin = "login";
+	} else {
+		changePageButtonText = "Already registered?";
+		signUpOrLogin = "register";
 	}
+
 	
 	return (
 		<div>
-			<form onChange={(event => handleInputChange(event))} onSubmit={event => handleSubmit(event)}>
+			<form autoComplete="true" onChange={(event => handleInputChange(event))} onSubmit={event => handleSubmit(event)}>
 
-				<input placeholder="email" ref={email} />
+				<input autoComplete="current-login" placeholder="email" ref={email} name="email"/>
 
-				<input placeholder="password" ref={password} type="password"/>
+				<input autoComplete="current-password" placeholder="password" ref={password} type="password" name="password"/>
 
 				<button type="submit">{signUpOrLogin}</button>
 
 			</form>
 
 			<button onClick={() => { /* A button that navigates to the login page if the user is on the register page and vice versa. */
-				if(location.pathname === "/register") {
-					navigate("/login");
-				} else {
-					navigate("/register");
-				}}}>
+				setIsLogin(!isLogin); }}
+			>
 				{changePageButtonText}
 			</button>
 		</div>
