@@ -31,11 +31,8 @@ root.render(
 						</>
 					
 					} />
-					<Route exact path="/login" element={
-						<Login />	
-					} />
-					<Route exact path="/register" element={
-						<Register />	
+					<Route exact path="/authentication" element={
+						<Authentication/>	
 					} />
 				</Routes>
 			</AuthenticationContextProvider>
